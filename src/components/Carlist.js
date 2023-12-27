@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { SERVER_URL } from "../constants.js";
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+import { DataGrid } from '@mui/x-data-grid';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddCar from "./AddCar";
 import EditCar from "./EditCar";
 import { CSVLink } from "react-csv";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import {Button, Grid} from "@mui/material";
+
 
 class Carlist extends Component {
   constructor(props) {
@@ -165,11 +164,17 @@ class Carlist extends Component {
             </CSVLink>
           </Grid>
         </Grid>
-        <ReactTable
-          data={this.state.cars}
-          columns={columns}
-          filterable={true}
+        <DataGrid
+            columns={columns}
+            data={this.state.cars}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
         />
+        {/*<ReactTable*/}
+        {/*  data={this.state.cars}*/}
+        {/*  columns={columns}*/}
+        {/*  filterable={true}*/}
+        {/*/>*/}
         <ToastContainer autoClose={1500} />
       </div>
     );
